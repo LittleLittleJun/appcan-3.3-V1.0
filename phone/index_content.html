@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/main.css" />
+    </head>
+    <body class="um-vp bc-bg" ontouchstart>
+
+        <div id="slider" class="slider"></div>
+
+        <div class="f-new" style="margin-top: 0px;">
+            最新产品
+        </div>
+
+        <div id="listview"  class="ubt bc-border sc-bg" style="color: #6D647C"></div>
+
+        <ul class="f-ul-1" id="ulImg" style="margin-top: 0em;">
+            <div style="padding-left: 70%;width: 30%;font-size: 1em" id="more">
+                更多>>
+            </div>
+        </ul>
+        <div class="f-new" style="margin-top: 8px;">
+            前沿技术
+        </div>
+        <div id="lineJ">
+            <div id="listview-2"  class="ubt bc-border sc-bg" style="border-color: white"></div>
+
+            <div style="padding-left: 70%;color:#6D647C; 30%;font-size: 1em" id="more2">
+                更多>>
+            </div>
+        </div>
+
+        <div class="f-new" style="margin-top: 8px;">
+            最新动态
+        </div>
+        <div id="listview-3"  class="ubt bc-border sc-bg" style="border-color: white"></div>
+
+        <div style="padding-left: 70%;width: 30%;font-size: 1em;color: #6D647C;margin-bottom: 8px;" id="more3">
+            更多>>
+        </div>
+        <script src="js/public.js"></script>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+        <script src="js/appcan.listview.js"></script>
+        <script src="js/appcan.slider.js"></script>
+        <script src="js/appcan.tab.js"></script>
+        <script src="js/appcan.treeview.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/newset.js"></script>
+        <script src="js/button.js"></script>
+        <script src="js/qianYjs.js"></script>
+        <script src="js/denglu.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+            appcan.initBounce();
+
+            newset2(5);
+            qianYjs2("前沿技术", lv2, "1", "10", "qy");
+            qianYjs2("最新动态", lv3, "1", "10", "zx");
+
+            indexSetBounce();
+
+            if (locGet("imei") == null) {
+                appcan.device.getInfo(10, function(err, data, dataType, optId) {
+                    var dataimei = eval("(" + data + ")")
+                    localS("imei", dataimei.imei);
+                });
+            }
+        })
+        var slider = appcan.slider({
+            selector : '#slider',
+            hasIndicator : false,
+            canDown : false,
+            auto : 2000,
+            hasCircle : true,
+            aspectRatio : 5.5 / 16,
+        });
+        slider.set([{
+            img : "images/4.jpg",
+        }, {
+            img : "images/6.jpg",
+        }, {
+            img : "images/ACD.jpg",
+        }, {
+            img : "images/FISHtheme.jpg",
+        }, {
+            img : "images/mianyizu.jpg",
+        }, {
+            img : "images/newAntibody.jpg",
+        }])
+        slider.on("clickItem", function(index, data) {
+            console.log(index, data);
+        })
+        var lv = appcan.listview({
+            selector : "#listview",
+            type : "thickLine",
+            hasIcon : true,
+            hasAngle : true,
+            hasSubTitle : true,
+            multiLine : 1,
+        });
+
+        var lv2 = appcan.listview({
+            selector : "#listview-2",
+            hasAngle : false
+        });
+
+        var lv3 = appcan.listview({
+            selector : "#listview-3",
+            hasAngle : false
+        });
+
+        function indexSetBounce() {
+            appcan.frame.setBounce(0, function(type) {
+                //开始上拖
+            }, function(type) {
+                //超过临界点,产生事件了！
+            }, function(type) {
+                //松手了,产生事件了,开始更新数据！
+                newset2(5);
+                qianYjs2("前沿技术", lv2, "1", "10", "qy");
+                qianYjs2("最新动态", lv3, "1", "10", "zx");
+                setTimeout(function() {
+                    //恢复默认弹动
+                    appcan.frame.resetBounce(type);
+                }, 1);
+            });
+        }
+
+    </script>
+</html>

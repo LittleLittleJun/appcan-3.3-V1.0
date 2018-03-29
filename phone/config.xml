@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<widget appId="main" channelCode="0000" height="480" pid="" sreensize="4.5" version="00.00.0007" viewmode="application" widgetId="" width="320">
+    <name>中杉金桥</name>
+    <description/>
+    <author email="zqi@origene.com">Zhenchao.Qi</author>
+    <icon src="icon.png"/>
+    <license href=""/>
+    <content encoding="utf-8" src="index.html"/>
+    <updateurl>http://www.zsbio.com:81/mobile/zsbio.apk</updateurl>
+    <logserverip>10.7.65.153</logserverip>
+    <showmyspace>false</showmyspace>
+    <obfuscation>false</obfuscation>
+    <bgcolor>#fefefe</bgcolor>
+    <orientation>15</orientation>
+    <debug>true</debug>
+    <partobfuscation>false</partobfuscation>
+    <webapp>true</webapp>
+    <error src=""/>
+    <removeloading/>
+</widget>

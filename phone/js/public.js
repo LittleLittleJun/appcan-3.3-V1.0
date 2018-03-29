@@ -1,0 +1,1 @@
+var ajaxUrl='http://www.zsbio.com:81';

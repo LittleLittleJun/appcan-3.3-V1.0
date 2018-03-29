@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <!-- <link rel="stylesheet" href="search_content/css/main.css"> -->
+        <link rel="stylesheet" href="css/main.css" />
+    </head>
+    <style type="text/css">
+    </style>
+    <body class="um-vp bc-bg" ontouchstart>
+
+        <div class="s-font" id="fontt">
+
+        </div>
+
+        <div style='display:-webkit-box;width:100%;height:2.5em;margin-top: 5px;font-size: 0.9em;line-height:2.5em;background: #00944A;color: white;text-align: center'>
+            <div style='-webkit-box-flex:2;border-right: 1px dashed #6DAA16' class="ss-sou">
+                <div style='position:absolute;width:100%;line-height:2.5em;'>
+                    产品编号
+                </div>
+            </div>
+            <div style='-webkit-box-flex:2;border-right: 1px dashed #6DAA16'class="ss-sou">
+                <div style='position:absolute;width:100%;line-height:2.5em;'>
+                    产品名称
+                </div>
+            </div>
+            <div style='-webkit-box-flex:4;border-right: 1px dashed #6DAA16' class="ss-sou">
+                <div style='position:absolute;width:100%;line-height:2.5em;'>
+                    产品描述
+                </div>
+            </div>
+            <div style='-webkit-box-flex:2;' class="ss-sou">
+                <div style='position:absolute;width:100%;line-height:2.5em;' >
+                    产品类别
+                </div>
+            </div>
+        </div>
+
+        <div id="buttom" style="font-size: 1em">
+
+        </div>
+
+    </body>
+    <script src="js/public.js"></script>
+    <script src="js/appcan.js"></script>
+    <script src="js/appcan.control.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/button.js"></script>
+    <script>
+        appcan.ready(function() {
+            searchFunction();
+        });
+
+        function searchFunction() {
+            $("#inval").blur();
+            $("#buttom").empty();
+            $("#fontt").html("");
+            var num = 10;
+            var term = locGet("ajaxVal");
+            ajaxD(term, ind, num);
+
+            appcan.frame.setBounce(1, function(type) {
+                //开始上拖
+            }, function(type) {
+                //超过临界点,产生事件了！
+            }, function(type) {
+                //松手了,产生事件了,开始更新数据！
+                ind++;
+                ajaxD(term, ind, num);
+                setTimeout(function() {
+                    //恢复默认弹动
+                    appcan.frame.resetBounce(type);
+                }, 1);
+            });
+        }
+
+    </script>
+</html>

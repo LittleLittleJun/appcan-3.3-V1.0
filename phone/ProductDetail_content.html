@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/main.css" />
+    </head>
+    <body class="um-vp bc-bg" ontouchstart>
+
+        <div class="de-head">
+            <span>编&nbsp;&nbsp;&nbsp;号：&nbsp;<font id="de-idd"></font></span>
+            <span>名&nbsp;&nbsp;&nbsp;称：&nbsp;<font id="de-namee"></font></span>
+        </div>
+        <ul class="detail_ul">
+            <li class="de-inf" id="cplb">
+                产品列表
+            </li>
+        </ul>
+        <div id="de-list" class="ub ub-ver"></div>
+        <ul class="detail_ul" style="margin-top:20px;">
+            <li class="de-inf liListDetail" id="proInfo"></li>
+        </ul>
+        <div class="c">
+            <ul style="list-style-type: circle" class="detail_ul" id="ulul">
+                <a id="lia"></a>
+                <li class="de-inf" id="de-kl"></li>
+                <li class="de-inf" id="de-sy"></li>
+                <li class="de-inf" id="de-yx"></li>
+                <li class="de-inf" id="de-yx2"></li>
+                <li class="de-inf" id="de-zz"></li>
+                <li class="de-inf" id="cpjj"></li>
+            </ul>
+            <p class="de-p"></p>
+        </div>
+
+        <img src="" id="de-img"/>
+        <script src="js/public.js"></script>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/jquery-1.11.3.min.js"></script>
+        <script src="js/button.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+            appcan.initBounce();
+            detal_fun(locGet("productsID"));
+            if (locGet("macAddress") == null || locGet("macAddress")==locGet("imei") ) {
+                appcan.device.getInfo(16, function(err, data, dataType, optId) {
+                    var datamacAddress = eval("(" + data + ")")
+                    localS("macAddress", datamacAddress.macAddress);
+                })
+            }
+        });
+
+    </script>
+</html>

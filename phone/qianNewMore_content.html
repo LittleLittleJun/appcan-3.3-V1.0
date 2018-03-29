@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/main.css" />
+        <style type="text/css">
+            a {
+                width: 90%;
+                height: 1.5em;
+                display: block;
+                text-decoration: none;
+                padding-left: 8%;
+                padding-right: 3%;
+                line-height: 1.5em;
+                letter-spacing: 3px;
+                word-spacing: 5px;
+                font-size: 1em;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                color: #6D647C;
+            }
+            a:hover {
+                background-color: #EFECEC;
+            }
+        </style>
+    </head>
+    <body class="um-vp bc-bg" ontouchstart>
+        <div id="outer">
+            <div id="listview-2"  class="ubt bc-border sc-bg"></div>
+            <div id="listview-3"  class="ubt bc-border sc-bg" style="border-color:white;"></div>
+        </div>
+
+    </body>
+    <script src="js/public.js"></script>
+    <script src="js/appcan.js"></script>
+    <script src="js/appcan.control.js"></script>
+    <script src="js/button.js"></script>
+    <script src="js/qianYjs.js"></script>
+    <script src="js/appcan.listview.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+            qianNewMore();
+        });
+        function qianNewMore() {
+            $("#listview-2").empty();
+            $("#listview-3").empty();
+            // $("#title").html("");
+            var m = 1;
+            var pg = 100;
+            if (locGet("num") == 2) {
+                qianYjs2("前沿技术", lv2, m, pg, "qyjs");
+            }
+            if (locGet("num") == 3) {
+                qianYjs2("最新动态", lv3, m, pg, "qyjs");
+            }
+
+            appcan.frame.setBounce(1, function(type) {
+                //开始上拖
+            }, function(type) {
+                //超过临界点,产生事件了！
+            }, function(type) {
+                //松手了,产生事件了,开始更新数据！
+                m++;
+                if (locGet("num") == 2) {
+                    qianYjs2("前沿技术", lv2, m, pg, "qyjs");
+                }
+                if (locGet("num") == 3) {
+                    qianYjs2("最新动态", lv3, m, pg, "qyjs");
+                }
+                setTimeout(function() {
+                    appcan.frame.resetBounce(type);
+                }, 1);
+            });
+        }
+
+        var lv2 = appcan.listview({
+            selector : "#listview-2",
+            hasAngle : false,
+            hasIcon : "true",
+            touchClass : 'sc-bg-active',
+        });
+
+        var lv3 = appcan.listview({
+            selector : "#listview-3",
+            hasAngle : false,
+            hasIcon : "true",
+            touchClass : 'sc-bg-active',
+        });
+
+    </script>
+</html>
